@@ -1,2 +1,2 @@
-# examples.javaman.com.ua
-Code examples for blog javaman.com.ua
+# Readme
+Code examples for blog [java-post.com](http://java-post.com)
