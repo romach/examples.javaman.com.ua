@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<style>
+  #progress {
+    border-bottom: 2px solid blue;
+    width: 0;
+    position: fixed;
+    top: 0; left: 0;
+  }
+  #innerHeight {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 5px;
+    background-color: #a0ff9c;
+    border: 1px solid black;
+  }
+
+  #documentBodyScrollHeight {
+    position: fixed;
+    top: 60px;
+    left: 20px;
+    padding: 5px;
+    background-color: #a0ff9c;
+    border: 1px solid black;
+  }
+
+  #max {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    padding: 5px;
+    background-color: #a0ff9c;
+    border: 1px solid black;
+  }
+
+  #pageYOffset {
+    position: fixed;
+    top: 140px;
+    left: 20px;
+    padding: 5px;
+    background-color: #a0ff9c;
+    border: 1px solid black;
+  }
+
+  .value {
+    font-weight: bold;
+  }
+</style>
+<div id="progress"></div>
+<div id="innerHeight">innerHeight: <span class="value"></span> - <em>height of the window</em></div>
+<div id="documentBodyScrollHeight">document.body.scrollHeight: <span class="value"></span> - <em>total scrollable height</em></div>
+<div id="max">max: <span class="value"></span> - <em>valid scrollable height</em></div>
+<div id="pageYOffset">pageYOffset: <span class="value"></span> - <em>current vertical scroll position</em></div>
+<script>
+    // Create some content
+    document.body.appendChild(document.createTextNode(
+        "supercalifragilisticexpialidocious ".repeat(1000)));
+    let bar = document.querySelector("#progress");
+    window.addEventListener("scroll", () => {
+        let max = document.body.scrollHeight - innerHeight;
+        bar.style.width = `${(pageYOffset / max) * 100}%`;
+        document.querySelector("#innerHeight .value").innerHTML = innerHeight.toString();
+        document.querySelector("#documentBodyScrollHeight .value").innerHTML = document.body.scrollHeight.toString();
+        document.querySelector("#max .value").innerHTML = max.toString();
+        document.querySelector("#pageYOffset .value").innerHTML = pageYOffset.toString();
+    });
+
+</script>
+
+</body>
+</html>
